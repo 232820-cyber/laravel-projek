@@ -3,34 +3,21 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthSiswaController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
-Route::get('/hash', function () {
-    return Hash::make('12345');
-});
-
-/* ======================
-   HALAMAN LOGIN
-====================== */
-
+/* LOGIN */
 Route::get('/', [AuthController::class,'formLogin']);
 Route::post('/login', [AuthController::class,'login']);
+Route::get('/logout', [AuthController::class,'logout']);
 
-/* ======================
-   DASHBOARD ADMIN
-====================== */
-
-Route::get('/admin', [AdminController::class, 'dashboard'])
+/* ADMIN */
+Route::get('/admin', [AdminController::class,'dashboard'])
     ->name('admin.dashboard');
 
-/* ======================
-   DASHBOARD SISWA
-====================== */
-
+/* RESET */
 Route::get('/reset-siswa', function () {
-
     DB::table('siswa')
         ->where('nis', 232820)
         ->update([
@@ -40,19 +27,13 @@ Route::get('/reset-siswa', function () {
     return 'Password siswa berhasil direset';
 });
 
-Route::get('/dashboard-siswa', function () {
+/* SISWA */
 
-    if (session('role') != 'siswa') {
-        return redirect('/');
-    }
+Route::get('/siswa', [SiswaController::class,'dashboard'])
+    ->name('siswa.dashboard');
 
-    return view('siswa.dashboard');
-});
+Route::get('/siswa/aspirasi', [SiswaController::class,'create'])
+    ->name('siswa.aspirasi');
 
-Route::post('/kirim-aspirasi', [SiswaController::class,'kirimAspirasi']);
-
-/* ======================
-   LOGOUT
-====================== */
-
-Route::get('/logout', [AuthController::class,'logout']);
+Route::post('/kirim-aspirasi', [SiswaController::class,'kirimAspirasi'])
+    ->name('siswa.kirim');

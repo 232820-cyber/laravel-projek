@@ -124,13 +124,15 @@ body{
 
     <div class="menu">
 
-        <a href="/dashboard-siswa">
-            Dashboard
-        </a>
+        <a href="{{ route('siswa.dashboard') }}"
+   class="{{ request()->routeIs('siswa.dashboard') ? 'active' : '' }}">
+   Dashboard
+</a>
 
-        <a href="ajukan-aspirasi" class="active">
-            ✔ Ajukan Aspirasi
-        </a>
+<a href="{{ route('siswa.aspirasi') }}"
+   class="{{ request()->routeIs('siswa.aspirasi') ? 'active' : '' }}">
+   Ajukan Aspirasi
+</a>
 
         <a href="#">
             Lihat Histori Aspirasi Saya
