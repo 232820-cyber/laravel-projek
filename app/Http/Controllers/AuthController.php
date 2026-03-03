@@ -46,7 +46,7 @@ $siswa = DB::table('siswa')
                 'kelas' => $siswa->kelas
             ]);
 
-            return redirect('/dashboard-siswa');
+            return redirect('/siswa');
         }
 
         return back()->with('error','Username / NIS atau password salah');

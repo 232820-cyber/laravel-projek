@@ -95,7 +95,7 @@ textarea.input{
 
         <label>Kategori</label>
         <select name="kategori" class="input" required>
-            <option>Pilih</option>
+            <option value="" disabled selected>Pilih</option>
             <option value="1">Kebersihan</option>
             <option value="2">Fasilitas</option>
             <option value="3">Keamanan</option>
