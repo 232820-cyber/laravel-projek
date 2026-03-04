@@ -35,28 +35,22 @@
                 <th>Siswa</th>
                 <th>Kategori</th>
                 <th>Status</th>
+                <th>Detail</th>
             </tr>
         </thead>
 
         <tbody>
 
             @foreach($aspirasi as $a)
-            <tr>
-                <td>{{ $a->tanggal }}</td>
-                <td>{{ $a->nis }}</td>
-                <td>{{ $a->nama_kategori }}</td>
-
-                <td>
-                    @if($a->status == 'Menunggu')
-                        <span class="status-menunggu">Menunggu</span>
-                    @elseif($a->status == 'Diproses')
-                        <span class="status-diproses">Diproses</span>
-                    @else
-                        <span class="status-selesai">Selesai</span>
-                    @endif
-                </td>
-
-            </tr>
+                <tr>
+                    <td>{{ $a->tanggal }}</td>
+                    <td>{{ $a->nama_siswa }}</td>
+                    <td>{{ $a->nama_kategori }}</td>
+                    <td>{{ $a->status }}</td>
+                    <td>
+                        <a href="{{ route('admin.detail', $a->id_aspirasi) }}" class="btn btn-sm btn-primary"> Lihat Detail</a>
+</td>
+                </tr>
             @endforeach
 
         </tbody>

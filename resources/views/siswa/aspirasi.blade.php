@@ -94,12 +94,14 @@ textarea.input{
                   placeholder="Silahkan masukkan deskripsi..." required></textarea>
 
         <label>Kategori</label>
-        <select name="kategori" class="input" required>
-            <option value="" disabled selected>Pilih</option>
-            <option value="1">Kebersihan</option>
-            <option value="2">Fasilitas</option>
-            <option value="3">Keamanan</option>
-        </select>
+<select name="kategori" class="input" required>
+    <option value="" disabled selected>Pilih</option>
+    @foreach($kategori as $k)
+        <option value="{{ $k->id_kategori }}">
+            {{ $k->ket_kategori }}
+        </option>
+    @endforeach
+</select>
 
         <label>Lokasi</label>
         <select name="lokasi" class="input" required>

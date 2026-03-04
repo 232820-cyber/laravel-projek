@@ -16,6 +16,9 @@ Route::get('/logout', [AuthController::class,'logout']);
 Route::get('/admin', [AdminController::class,'dashboard'])
     ->name('admin.dashboard');
 
+Route::get('/admin/aspirasi/{id}', [AdminController::class, 'detail'])
+    ->name('admin.detail');
+
 /* RESET */
 Route::get('/reset-siswa', function () {
     DB::table('siswa')
@@ -37,3 +40,9 @@ Route::get('/siswa/aspirasi', [SiswaController::class,'create'])
 
 Route::post('/kirim-aspirasi', [SiswaController::class,'kirimAspirasi'])
     ->name('siswa.kirim');
+
+    Route::get('/dashboard-siswa', [SiswaController::class, 'dashboard']);
+Route::get('/aspirasi', [SiswaController::class, 'create'])->name('siswa.create');
+Route::post('/kirim-aspirasi', [SiswaController::class, 'kirimAspirasi']);
+Route::post('/admin/aspirasi/update/{id}', [AdminController::class, 'update'])
+    ->name('admin.update');
